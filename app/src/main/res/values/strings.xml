@@ -5,6 +5,9 @@
 
     <string name="pref_stocks_key">stocks</string>
 
+    <string name="details_screen">Details Screen</string>
+
+
 
     <string name="pref_display_mode_key">displayMode</string>
     <string name="pref_display_mode_default">@string/pref_display_mode_percentage_key</string>
