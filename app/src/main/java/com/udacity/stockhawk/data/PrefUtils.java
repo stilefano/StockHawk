@@ -1,10 +1,17 @@
 package com.udacity.stockhawk.data;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.StockHawkApp;
+import com.udacity.stockhawk.widget.StockHawkWidget;
+import com.udacity.stockhawk.widget.StockHawkWidgetService;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,7 +30,6 @@ public final class PrefUtils {
         HashSet<String> defaultStocks = new HashSet<>(Arrays.asList(defaultStocksList));
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-
         boolean initialized = prefs.getBoolean(initializedKey, false);
 
         if (!initialized) {
@@ -33,6 +39,7 @@ public final class PrefUtils {
             editor.apply();
             return defaultStocks;
         }
+
         return prefs.getStringSet(stocksKey, new HashSet<String>());
 
     }

@@ -14,12 +14,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
@@ -31,7 +34,7 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
-        StockAdapter.StockAdapterOnClickHandler {
+        StockAdapter.StockAdapterOnClickHandler{
 
     private static final int STOCK_LOADER = 0;
     @SuppressWarnings("WeakerAccess")
@@ -48,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onClick(String symbol) {
 
-        Timber.d("Symbol clicked: %s", symbol);
-        Toast.makeText(this, "Symbol clicked: " + symbol, Toast.LENGTH_LONG ).show();
+        Toast.makeText(this, getApplicationContext().getString(R.string.symbol_clicked) + symbol, Toast.LENGTH_LONG ).show();
         Intent i = new Intent(getApplicationContext(),DetailActivity.class);
-        i.putExtra("Symbol",symbol);
+        i.putExtra(DetailActivity.EXTRA_SYMBOL,symbol);
         startActivity(i);
 
 
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Stetho.initializeWithDefaults(this);
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -194,4 +198,5 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
