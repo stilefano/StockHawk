@@ -5,12 +5,12 @@
 
     <string name="pref_stocks_key" translatable="false">stocks</string>
 
-    <string name="details_screen">Details Screen</string>
+    <string name="details_screen" translatable="false">Details Screen</string>
 
 
 
-    <string name="pref_display_mode_key">displayMode</string>
-    <string name="pref_display_mode_default">@string/pref_display_mode_percentage_key</string>
+    <string name="pref_display_mode_key" translatable="false">displayMode</string>
+    <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
 
     <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
     <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
@@ -23,7 +23,7 @@
 
     <string name="add_new_stock">Add new Stock</string>
 
-    <string name="action_change_units">@string/pref_display_mode_key</string>
+    <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
 
 
     <string name="dialog_title">Add Stock</string>
