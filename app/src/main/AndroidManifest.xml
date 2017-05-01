@@ -46,6 +46,7 @@
             android:name=".widget.StockHawkWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.udacity.stockhawk.ACTION_DATA_UPDATED"></action>
             </intent-filter>
 
             <meta-data

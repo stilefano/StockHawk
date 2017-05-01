@@ -16,6 +16,8 @@ public class StockProvider extends ContentProvider {
     private static final int QUOTE = 100;
     private static final int QUOTE_FOR_SYMBOL = 101;
 
+    public static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
+
     private static final UriMatcher uriMatcher = buildUriMatcher();
 
     private DbHelper dbHelper;

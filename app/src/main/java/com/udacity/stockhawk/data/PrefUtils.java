@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.data;
 
 import android.appwidget.AppWidgetManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +18,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class PrefUtils {
+import timber.log.Timber;
+
+public final class PrefUtils{
 
     private PrefUtils() {
     }
+
 
     public static Set<String> getStocks(Context context) {
         String stocksKey = context.getString(R.string.pref_stocks_key);
@@ -58,6 +62,9 @@ public final class PrefUtils {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putStringSet(key, stocks);
         editor.apply();
+
+//        updateWidgets(context);
+
     }
 
     public static void addStock(Context context, String symbol) {
@@ -94,5 +101,18 @@ public final class PrefUtils {
 
         editor.apply();
     }
+
+
+//    public static void updateWidgets(Context context) {
+//        Intent intent = new Intent(context.getApplicationContext(), StockHawkWidget.class);
+//        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+//        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+//        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(context, StockHawkWidgetService.class));
+//
+//        widgetManager.notifyAppWidgetViewDataChanged(ids, R.id.list);
+//
+//        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+//        context.sendBroadcast(intent);
+//    }
 
 }

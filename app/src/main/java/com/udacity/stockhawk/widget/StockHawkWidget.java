@@ -4,14 +4,19 @@ package com.udacity.stockhawk.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
 import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.data.StockProvider;
 import com.udacity.stockhawk.ui.DetailActivity;
 import com.udacity.stockhawk.ui.MainActivity;
+
+import timber.log.Timber;
 
 public class StockHawkWidget extends AppWidgetProvider {
 
@@ -40,5 +45,17 @@ public class StockHawkWidget extends AppWidgetProvider {
 
         }
 
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        if (StockProvider.ACTION_DATA_UPDATED.equals(intent.getAction())) {
+            final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            final int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
+                    new ComponentName(context, getClass()));
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds,
+                    R.id.list);
+        }
     }
 }
